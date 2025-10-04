@@ -23,7 +23,7 @@ def load_estimator():
 
     if not os.path.exists("homework/estimator.pickle"):
         return None
-    with open("homewirk/estimator.pickle", "rb") as file:
+    with open("homework/estimator.pickle", "rb") as file:
         estimator = pickle.load(file)
 
     return estimator
@@ -31,14 +31,17 @@ def load_estimator():
 
 def test_01():
 
-    from sklearn.metrics import accuracy_score
+    from sklearn.metrics import r2_score
 
     x, y = load_data()
     estimator = load_estimator()
 
-    accuracy = accuracy_score(
-        y_true=y,
-        y_pred=estimator.predict(x),
+    r2 = r2_score(
+        y, 
+        estimator.predict(x),
     )
 
-    assert accuracy > 0
+    assert r2 > 0.6
+
+    
+    
